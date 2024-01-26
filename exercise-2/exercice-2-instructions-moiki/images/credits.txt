@@ -1,0 +1,15 @@
+---
+
+Cover image
+file: images/cover.jpg
+credit: iam_os / Unsplash.com
+more info: https://unsplash.com/photos/a-statue-of-a-man-holding-a-staff-veHGlVkU4qQ
+
+---
+
+file: images/content/dd483a16-85c8-4be0-8564-38e902c53cbe.png
+credit: Fabien
+---
+
+file: images/content/71471d94-7712-4de3-988e-63b7757c9728.jpg
+credit: fabien
