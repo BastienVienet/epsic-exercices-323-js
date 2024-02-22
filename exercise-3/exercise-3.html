@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercise 3</title>
+    <script src="exercise-3-data.js"></script>
+  </head>
+  <body>
+    <h1>Exercise 3</h1>
+    <form onchange="refreshData()">
+      <label for="dynastyFilter">Dynasty</label>
+      <select id="dynastyFilter" name="dynastyFilter">
+        <option value="All">All</option>
+        <option value="Julio-Claudian">Julio-Claudian</option>
+        <option value="Flavian">Flavian</option>
+        <option value="Nerva-Antonine">Nerva-Antonine</option>
+        <option value="Severan">Severan</option>
+        <option value="Gordian">Gordian</option>
+        <option value="Constantinian">Constantinian</option>
+        <option value="Valentinian">Valentinian</option>
+        <option value="Theodosian">Theodosian</option>
+      </select>
+      <label for="deathCauseFilter">Death cause</label>
+      <select id="deathCauseFilter" name="deathCauseFilter">
+        <option value="All">All</option>
+        <option value="Assassination">Assassination</option>
+        <option value="Captivity">Captivity</option>
+        <option value="Died in Battle">Died in Battle</option>
+        <option value="Execution">Execution</option>
+        <option value="Natural Causes">Natural Causes</option>
+        <option value="Suicide">Suicide</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+      <label for="minReignDurationFilter">Minimum reign duration</label>
+      <input
+        type="number"
+        id="minReignDurationFilter"
+        name="minReignDurationFilter"
+      />
+      <label for="maxReignDurationFilter">Maximum reign duration</label>
+      <input
+        type="number"
+        id="maxReignDurationFilter"
+        name="maxReignDurationFilter"
+      />
+    </form>
+    <pre id="output"></pre>
+    <script src="exercise-3.js"></script>
+  </body>
+</html>
