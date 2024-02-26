@@ -66,4 +66,40 @@ const refreshData = () => {
   );
 };
 
+// Function to populate filter options
+const populateFilterOptions = () => {
+  // Get unique dynasties and death causes
+  const dynasties = [];
+  const deathCauses = [];
+
+  jsonData.forEach((item) => {
+    if (!dynasties.includes(item.dynasty)) {
+      dynasties.push(item.dynasty);
+    }
+
+    item.emperors.forEach((emperor) => {
+      if (!deathCauses.includes(emperor.deathCause)) {
+        deathCauses.push(emperor.deathCause);
+      }
+    });
+  });
+
+  // Create options for each filter
+  dynasties.forEach((dynasty) => {
+    const option = document.createElement("option");
+    option.value = option.text = dynasty;
+    dynastyFilter.appendChild(option);
+  });
+
+  deathCauses.forEach((cause) => {
+    const option = document.createElement("option");
+    option.value = option.text = cause;
+    deathCauseFilter.appendChild(option);
+  });
+};
+
+// Call the function to populate filter options
+populateFilterOptions();
+
+// Call the function to refresh data
 refreshData();
