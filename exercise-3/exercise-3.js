@@ -12,8 +12,8 @@ const maxReignDurationFilter = document.getElementById(
 const getFilters = () => ({
   dynasty: dynastyFilter.value || undefined,
   deathCause: deathCauseFilter.value || undefined,
-  minReignDuration: parseInt(minReignDurationFilter.value),
-  maxReignDuration: parseInt(maxReignDurationFilter.value),
+  minReignDuration: parseInt(minReignDurationFilter.value) || undefined,
+  maxReignDuration: parseInt(maxReignDurationFilter.value) || undefined,
 });
 
 // Raw data is stored in the constant named DATA as a string
@@ -23,6 +23,8 @@ const jsonData = DATA.split("\n")
   .map((columns) => ({
     number: parseInt(columns[0]),
     name: columns[1],
+    reignStart: parseInt(columns[8]), // Will delete this property later
+    reignEnd: parseInt(columns[9]), // Will delete this property later
     deathCause: columns[10],
     dynasty: columns[12],
   }))
@@ -41,6 +43,14 @@ const jsonData = DATA.split("\n")
     return dynasties;
   }, []);
 
+// Add reignDuration to each emperor
+jsonData.forEach((item) => {
+  item.emperors.forEach((emperor) => {
+    emperor.reignDuration = emperor.reignEnd - emperor.reignStart;
+  });
+});
+
+// Update refreshData function
 const refreshData = () => {
   // We get the current filters
   const filters = getFilters();
@@ -51,15 +61,26 @@ const refreshData = () => {
       .filter((element) => {
         return filters.dynasty === "All" || filters.dynasty === element.dynasty;
       })
-      // We map each dynasty to a new object where the emperors array is filtered by death cause
+      // We map each dynasty to a new object where the emperors array is filtered by death cause and reign duration
       .map((element) => ({
         ...element, // Create a new object with the same properties as the current dynasty
-        emperors: element.emperors.filter((emperor) => {
-          return (
-            filters.deathCause === "All" ||
-            filters.deathCause === emperor.deathCause
-          );
-        }),
+        emperors: element.emperors
+          .filter((emperor) => {
+            return (
+              (filters.deathCause === "All" ||
+                filters.deathCause === emperor.deathCause) &&
+              (filters.minReignDuration === undefined ||
+                emperor.reignDuration >= filters.minReignDuration) &&
+              (filters.maxReignDuration === undefined ||
+                emperor.reignDuration <= filters.maxReignDuration)
+            );
+          })
+          // Delete reignStart and reignEnd properties from each emperor
+          .map((emperor) => {
+            delete emperor.reignStart;
+            delete emperor.reignEnd;
+            return emperor;
+          }),
       })),
     null,
     2
