@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4</title>
+    <script src="exercise-4-data.js"></script>
+</head>
+<body>
+    <h1>Exercise 4</h1>
+    <form onchange="filterChanged()">
+        <label for="dynastyFilter">Dynasty</label>
+        <select id="dynastyFilter" name="dynastyFilter">
+            <option value="">All</option>
+        </select>
+        <label for="deathCauseFilter">Death cause</label>
+        <select id="deathCauseFilter" name="deathCauseFilter">
+            <option value="">All</option>
+        </select>
+        <label for="minReignDurationFilter">Minimum reign duration</label>
+        <input type="number" id="minReignDurationFilter" name="minReignDurationFilter">
+        <label for="maxReignDurationFilter">Maximum reign duration</label>
+        <input type="number" id="maxReignDurationFilter" name="maxReignDurationFilter">
+    </form>
+    <p id="emperorsList"></p>
+    <p id="emperorWithLongestReign"></p>
+    <pre id="output"></pre>
+    <script src="exercise-3.js"></script>
+    <script src="exercise-4.js"></script>
+</body>
+</html>
