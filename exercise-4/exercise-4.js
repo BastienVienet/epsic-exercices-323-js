@@ -22,11 +22,11 @@ const storeData = (data) => {
         emperor.reignDuration > longestReign.reignDuration
           ? { ...emperor }
           : longestReign,
-      { reignDuration: 0 }
+      { name: "xxx", reignDuration: 0 }
     );
 
   emperorsList.innerHTML = `Empereurs correspondant aux filtres : ${emperorNames}`;
-  emperorWithLongestReignContainer.innerHTML = `Empereur ayant reigné le plus longtemps : ${longestReign.name}, ${longestReign.reignDuration} years`;
+  emperorWithLongestReignContainer.innerHTML = `Empereur ayant reigné le plus longtemps : ${longestReign.name}, ${longestReign.reignDuration} year(s)`;
 };
 onFilterChange.push(storeData);
 

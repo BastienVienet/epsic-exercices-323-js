@@ -109,7 +109,7 @@ const filterData = (data, filters) =>
         .filter(
           (emperor) =>
             !filters.maxReignDuration ||
-            emperor.reignDuration < filters.maxReignDuration
+            emperor.reignDuration <= filters.maxReignDuration
         ),
     }));
 
